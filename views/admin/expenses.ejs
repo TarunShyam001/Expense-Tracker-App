@@ -1,0 +1,37 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/expenses.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if (expenses.length > 0) { %>
+            <div class="grid">
+                <% for (let expense of expenses) { %>
+                    <article class="card-expense-items">
+                        <header class="expense-header">
+                            <h1 class="expense-title"><%= expense.title %></h1>
+                        </header>
+                        <div class="card-content">
+                            <h2 class="expense-amount">Rs. <%= expense.amount %></h2>
+                        </div>
+                        <div class="card-content">
+                            <p class="expense-category"><%= expense.category %></p>
+                        </div>
+                        <div class="card__actions">
+                            <a href="/admin/edit-expense/<%= expense.id %>?edit=true" class="btn"> Edit </a>
+                            <input type="hidden" value="<%= expense.id %>" name="expenseId">
+                            <form action="/admin/delete-expense" method="POST">
+                                <input type="hidden" value="<%= expense.id %>" name="expenseId">
+                                <button class="btn-danger" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </article>
+                <% } %>
+            </div>
+        <% } else { %>
+            <h1>No Expense Details Are Found!</h1>
+        <% } %>
+    </main>
+<%- include('../includes/end.ejs') %>

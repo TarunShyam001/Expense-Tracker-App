@@ -1,0 +1,18 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/expense-details.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main class="centered">
+            <h1> <%= expense.title %></h1>
+            <hr>
+            <div class="card-items">
+                <h2> Expense Amount : Rs. <%= expense.amount %></h2>
+                <br>
+                <h4> Category : <%= expense.category %></h4>
+                <br>
+                <p style="font-style: italic;"> <%= expense.details %> </p>
+            </div>
+        </main>
+        <%- include('../includes/end.ejs') %>

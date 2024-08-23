@@ -1,0 +1,46 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+
+<body>
+    
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <form class="expense-form" action="/admin/<% if (editing) { %>edit-expense<% } else { %>add-expense<% } %>" method="POST">
+            <div class="form-control">
+                <label for="title"> Expense-Title </label>
+                <input type="text" name="title" id="title" value="<% if (editing) { %><%= expense.title %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="amount"> Expenses Amount : </label>
+                <input type="number" name="amount" id="amount" step="0.5" value="<% if (editing) { %><%= expense.amount %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="category"> Choose a Category : </label>
+                <select name="category" id="category"> <!-- "Select" option is unpickable -->
+                    <option value="" disabled <% if (!editing) { %>selected<% } %>> Select </option>
+                    <option value="Personal" <% if (editing && expense.category === 'Personal') { %>selected<% } %>> Personal </option>
+                    <option value="On Vehicle" <% if (editing && expense.category === 'On Vehicle') { %>selected<% } %>> Fuel </option>
+                    <option value="Food" <% if (editing && expense.category === 'Food') { %>selected<% } %>> Food </option>
+                    <option value="Bills" <% if (editing && expense.category === 'Bills') { %>selected<% } %>> Bill </option>
+                
+                    <!-- <option name="select" value=""> Select </option>
+                    <option name="personal" value="Personal"> Personal </option>
+                    <option name="vehicle" value="On Vehicle"> Fuel </option>
+                    <option name="food" value="Food"> Food </option>
+                    <option name="bills" value="Bills"> Bill </option> -->
+                </select>
+            </div>
+            <div class="form-control">
+                <label for="details"> Details : </label>
+                <textarea name="details" id="details" rows="5"> <% if (editing) { %><%= expense.details %><% } %> </textarea>
+            </div>
+            <% if (editing) { %>
+                <input type="hidden" value="<%= expense.id %>" name=expenseId">
+            <% } %>
+            <button class="btn" type="submit"><% if (editing) { %> Update Expense <% } else { %> Add Expense <% } %></button>
+        </form>
+    </main>
+    <%- include('../includes/end.ejs') %>
+  

@@ -1,0 +1,53 @@
+<div class="backdrop"></div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item">
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/"> Home </a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/expenses' ? 'active' : '' %>" href="/expenses"> Expense-Details </a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin/add-expense' ? 'active' : '' %>" href="/admin/add-expense"> Add Expense-Details </a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin/expenses' ? 'active' : '' %>" href="/admin/expenses"> Admin Products </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<nav class="mobile-nav">
+    <ul class="mobile-nav__item-list">
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/' ? 'active' : '' %>" href="/"> Home </a>
+        </li>
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/expenses' ? 'active' : '' %>" href="/expenses"> Expense-Details </a>
+        </li>
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/admin/add-expense' ? 'active' : '' %>" href="/admin/add-expense"> Add Expense-Details </a>
+        </li>
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/admin/expenses' ? 'active' : '' %>" href="/admin/expenses"> Admin Products </a>
+        </li>
+    </ul>
+</nav>
+
+<script>
+    const menuToggle = document.getElementById('side-menu-toggle');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const backdrop = document.querySelector('.backdrop');
+
+    menuToggle.addEventListener('click', () => {
+        mobileNav.classList.toggle('show');
+        backdrop.classList.toggle('show');
+    });
+
+    backdrop.addEventListener('click', () => {
+        mobileNav.classList.remove('show');
+        backdrop.classList.remove('show');
+    });
+</script>
