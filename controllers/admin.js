@@ -49,8 +49,9 @@ exports.getEditExpense = (req, res, next) => {
     return res.redirect('/');
   }
   const expId = req.params.expenseId;
-  Expense.findByPk(expId)
-  .then(expense => {
+  Expense.findAll({Where : {id : expId}})
+  .then(expenses => {
+    const expense = expenses[0];
     if(!expense){
       return res.redirect('/');
     }
@@ -72,8 +73,9 @@ exports.postEditExpense = (req, res, next) => {
   const updatedCategory = req.body.category;
   const updatedPrice = req.body.amount;
   const updatedDesc = req.body.details;
-  Expense.findByPk(expId)
-  .then(expense => {
+  Expense.findAll(expId)
+  .then(expenses => {
+    const expense = expenses[0];
     if (!expense) {
       console.log('Expense not found');
       return res.redirect('/');
